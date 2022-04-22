@@ -7,6 +7,7 @@ The aim of the project was to develop a Convolutional Neural Netowork to perform
 <p align="center">
   <img src="https://user-images.githubusercontent.com/48138368/164726570-b1468e7d-1992-4e97-87de-1c641186ae54.png" />
 </p>
+
 # Model
 
 The architecture used in this project is called Fully Convolutional Network, it differs from the classical Convolutional NN by replacing the last dense layers with an expansive path (convolution, deconvolution and upsampling layers) that allows to reconstruct the original image and make a pixel by pixel classification.
