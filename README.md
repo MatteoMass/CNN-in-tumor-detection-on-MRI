@@ -12,10 +12,10 @@ The aim of the project was to develop a Convolutional Neural Netowork to perform
 
 The architecture used in this project is called <b>Fully Convolutional Network</b>, it differs from the classical Convolutional NN by replacing the last dense layers with an expansive path (convolution, deconvolution and upsampling layers) that allows to reconstruct the original image and make a pixel by pixel classification.
 
-Both the first proposed version of FCN and an evolution of it, called <b>U-net</b>, have been tested. Different configurations were tested for both architectures in order to find the best performing combination of number of filters, loss function and dropout. The metrics used to evaluate the models are accuracy and dice coefficient.
+Both the first proposed version of FCN and an evolution of it, called <b>U-net</b>, have been tested. Different configurations were tested for both architectures in order to find the best performing combination of number of filters, loss function and dropout. The metrics used to evaluate the models are <i>Accuracy</i> and <i>Dice Coefficient</i>.
 
 Particular attention was given to loss functions, and given the nature of the problem, several were tested:
-- Binary Crossentropy
-- Dice Loss
-- Tversky Loss
+- <i>Binary Crossentropy</i>
+- <i>Dice Loss</i>
+- <i>Tversky Loss</i>
 
