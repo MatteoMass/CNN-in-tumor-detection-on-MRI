@@ -19,3 +19,14 @@ Particular attention was given to loss functions, and given the nature of the pr
 - <i>Dice Loss</i>
 - <i>Tversky Loss</i>
 
+# Result
+The model that gave the best results was the U-net (image below) in combination with binary crossentropy.
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48138368/164784623-2336732f-b9c1-49d1-9cdd-54a4ff071095.png" />
+</p>
+This model managed to achieve a coefficient dice of 0.72 in the test set, and produced predictions such as those below where from left to right is the original image, ground truth and prediction. 
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/48138368/164784824-3d5a54b9-a0d8-46e0-8b0f-d6f997d34fc5.png">
+  <img src="https://user-images.githubusercontent.com/48138368/164784836-f25d8d3d-63d1-4499-9f64-583b2bafe56b.png">
+</p>
