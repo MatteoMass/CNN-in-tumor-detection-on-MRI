@@ -31,4 +31,4 @@ This model managed to achieve a coefficient dice of 0.72 in the test set, and pr
   <img src="https://user-images.githubusercontent.com/48138368/164784836-f25d8d3d-63d1-4499-9f64-583b2bafe56b.png">
 </p>
 
-More detailed information can be found in the <i>report.pdf</i> file in this repository.
+More detailed information can be found in the <i>report.pdf</i> file.
