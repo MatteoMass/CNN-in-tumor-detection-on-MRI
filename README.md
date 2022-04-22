@@ -24,7 +24,7 @@ The model that gave the best results was the U-net (image below) in combination 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/48138368/164784623-2336732f-b9c1-49d1-9cdd-54a4ff071095.png" />
 </p>
-This model managed to achieve a coefficient dice of 0.72 in the test set, and produced predictions such as those below where from left to right is the original image, ground truth and prediction. 
+This model managed to achieve a coefficient dice of 0.72 in the test set, and produced predictions such as those below where from left to right is the original image, ground truth and prediction. As can be seen, the model is able to identify the location, shape and size of the tumour quite well, although some false positives are present (as in the second set of images).
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/48138368/164784824-3d5a54b9-a0d8-46e0-8b0f-d6f997d34fc5.png">
