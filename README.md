@@ -1,6 +1,6 @@
 # TumorDetector
 
-This project was carried out for the Intelligent System for Pattern Recognition exam (6 credit version).
+This project was carried out for the <i>Intelligent System for Pattern Recognition</i> exam (6 credit version).
 
 The aim of the project was to develop a Convolutional Neural Netowork to perform the semantic segmentation of brain MR images. Specifically, the model has to take in input an image (on the left) and return a mask (on the right) representing the portion of the brain that is a tumor.
 
@@ -30,3 +30,5 @@ This model managed to achieve a coefficient dice of 0.72 in the test set, and pr
   <img src="https://user-images.githubusercontent.com/48138368/164784824-3d5a54b9-a0d8-46e0-8b0f-d6f997d34fc5.png">
   <img src="https://user-images.githubusercontent.com/48138368/164784836-f25d8d3d-63d1-4499-9f64-583b2bafe56b.png">
 </p>
+
+More detailed information can be found in the <i>report.pdf</i> file in this repository.
