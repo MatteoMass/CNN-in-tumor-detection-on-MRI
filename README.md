@@ -12,4 +12,4 @@ The aim of the project was to develop a Convolutional Neural Netowork to perform
 
 The architecture used in this project is called Fully Convolutional Network, it differs from the classical Convolutional NN by replacing the last dense layers with an expansive path (convolution, deconvolution and upsampling layers) that allows to reconstruct the original image and make a pixel by pixel classification.
 
-Both the first proposed version of FCN and an evolution of it, called U-net, have been tested. For both architectures
+Both the first proposed version of FCN and an evolution of it, called <b>U-net</b>, have been tested. For both architectures
