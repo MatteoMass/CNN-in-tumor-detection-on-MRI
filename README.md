@@ -1,4 +1,4 @@
-# TumorDetector
+# Convolutional Neural Network for semantic segmentation in tumor detection on brain MRI
 
 This project was carried out for the <i>Intelligent System for Pattern Recognition</i> exam (6 credit version).
 
