@@ -9,7 +9,7 @@ Created on Sun Apr 17 18:04:55 2022
 
 import tensorflow as tf
 from keras.models import Model
-from keras.layers import Conv2D, Dropout, AveragePooling2D, Input, Add, UpSampling2D, Activation
+from keras.layers import Conv2D, Dropout, AveragePooling2D, Input, Add, UpSampling2D, Activation, BatchNormalization
 
 from metrics import dice_coef
 
@@ -22,16 +22,18 @@ def convolutionalBlock(in_, filters, dropout):
     x = Conv2D(filters, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x)
     return x
 
-def encoderBlock(in_, filters, dropout):
+def encoderBlock(in_, filters, dropout, useBatchNormalization):
     '''
     create an encoder block by stacking a convolutionalBlock on top of in_, followed by a AveragePooling layer
     '''
     x = convolutionalBlock(in_, filters, dropout)
+    if(useBatchNormalization):
+       x = BatchNormalization()(x) 
     p = AveragePooling2D((2,2))(x)
     return p
 
 
-def getFCN(IMG_SIZE, Path, addMask, Bridge, dropout = 0.1, Loss = 'binary_crossentropy'):
+def getFCN(IMG_SIZE, Path, addMask, Bridge, dropout = 0.1, Loss = 'binary_crossentropy', useBatchNormalization = False):
     '''
     
     :param IMG_SIZE: Dimension of the image (assumed to be square)
@@ -46,6 +48,8 @@ def getFCN(IMG_SIZE, Path, addMask, Bridge, dropout = 0.1, Loss = 'binary_crosse
     :type dropout: float in [0,1], optional
     :param Loss: loss function to be used, defaults to 'binary_crossentropy'
     :type Loss: either string (if one of the keras default loss) or a function, optional
+    :param useBatchNormalization: flag that indicates if a BatchNormalization layer has to be added before each AveragePooling layer
+    :type: boolean
     
     :return: FCN model already compiled
     :rtype: Keras model
@@ -59,7 +63,7 @@ def getFCN(IMG_SIZE, Path, addMask, Bridge, dropout = 0.1, Loss = 'binary_crosse
     p = inputs
 
     for i in Path:
-        p = encoderBlock(p, i, dropout)
+        p = encoderBlock(p, i, dropout, useBatchNormalization)
         SkipConnections.append(p)
   
     p = convolutionalBlock(p, Bridge, dropout)
