@@ -8,7 +8,7 @@ Created on Sun Apr 17 18:14:24 2022
 """
 
 from keras.models import Model
-from keras.layers import Input, Conv2D, MaxPooling2D, concatenate, Conv2DTranspose, Dropout
+from keras.layers import Input, Conv2D, MaxPooling2D, concatenate, Conv2DTranspose, Dropout, BatchNormalization
 
 from metrics import dice_coef
 
@@ -23,11 +23,13 @@ def convolutionalBlock(in_, filters, dropout):
     x = Conv2D(filters, (3, 3), activation='relu', kernel_initializer='he_normal', padding='same')(x)
     return x
 
-def encoderBlock(in_, filters, useDropout):
+def encoderBlock(in_, filters, useDropout, useBatchNormalization):
     '''
     create an encoder block by stacking a convolutionalBlock on top of in_, followed by a MaxPooling layer
     '''
     x = convolutionalBlock(in_, filters, useDropout)
+    if(useBatchNormalization):
+        x = BatchNormalization()(x)
     p = MaxPooling2D((2,2))(x)
     return x,p
 
@@ -40,7 +42,7 @@ def decoderBlock(in_, filters, useDropout, skipConnection):
     x = convolutionalBlock(x, filters, useDropout)
     return x
 
-def getUnetModel(IMG_SIZE, Path, Bridge, dropout = 0.1, Loss = 'binary_crossentropy'):
+def getUnetModel(IMG_SIZE, Path, Bridge, dropout = 0.1, Loss = 'binary_crossentropy', useBatchNormalization = False):
     '''
     :param IMG_SIZE: Dimension of the image (assumed to be square)
     :type IMG_SIZE: int
@@ -52,6 +54,8 @@ def getUnetModel(IMG_SIZE, Path, Bridge, dropout = 0.1, Loss = 'binary_crossentr
     :type useDropout: float in [0,1], optional
     :param Loss: loss function to be used, defaults to 'binary_crossentropy'
     :type Loss: either string (if one of the keras default loss) or a function, optional
+    :param useBatchNormalization: flag that indicates if a BatchNormalization layer has to be added before each AveragePooling layer
+    :type: boolean
     
     :return: Unet model already compiled
     :rtype: Keras model
@@ -65,7 +69,7 @@ def getUnetModel(IMG_SIZE, Path, Bridge, dropout = 0.1, Loss = 'binary_crossentr
     p = inputs
   
     for i in Path:
-        x,p = encoderBlock(p, i, dropout)
+        x,p = encoderBlock(p, i, dropout, useBatchNormalization)
         SkipConnections.append(x)
         
     p = convolutionalBlock(p, Bridge, dropout)
